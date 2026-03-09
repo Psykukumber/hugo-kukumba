@@ -1,0 +1,19 @@
+{{- $needsGallery := false -}}
+{{- range . -}}
+  {{- if not $needsGallery -}}
+    {{- $previewMode := .Params.list_preview_mode | default "plain" -}}
+    {{- $previewHTML := "" -}}
+    {{- if and (eq $previewMode "rich") .Truncated -}}
+      {{- $previewHTML = .Summary -}}
+    {{- else if eq $previewMode "full" -}}
+      {{- $previewHTML = .Content -}}
+    {{- end -}}
+    {{- if and $previewHTML (findRE `<(img|iframe|video)\b|data-album\b` $previewHTML 1) -}}
+      {{- $needsGallery = true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $needsGallery -}}
+  <script type="module" src="{{ "js/media/gallery.js" | relURL }}"></script>
+{{- end -}}

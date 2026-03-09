@@ -1,0 +1,21 @@
+{{ define "main" }}
+  {{ $paginator := .Paginate (.Pages.ByDate.Reverse) }}
+  {{ .Scratch.Set "listPaginator" $paginator }}
+  <h1>{{ .Title }}</h1>
+  {{ if .Content }}
+    {{ .Content }}
+  {{ end }}
+  {{ if eq $paginator.NumberOfElements 0 }}
+    <p>{{ T "noPostsYet" }}</p>
+  {{ end }}
+  {{ partial "posts/list-content.html" (dict
+    "paginator" $paginator
+    "site" .Site
+  ) }}
+{{ end }}
+
+{{ define "scripts" }}
+  {{ with .Scratch.Get "listPaginator" }}
+    {{ partial "posts/list-scripts.html" .Pages }}
+  {{ end }}
+{{ end }}

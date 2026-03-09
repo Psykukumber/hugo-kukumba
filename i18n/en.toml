@@ -1,0 +1,38 @@
+[footerLinks]
+other = "Footer links"
+
+[pagination]
+other = "Pagination"
+
+[previousPage]
+other = "Previous"
+
+[nextPage]
+other = "Next"
+
+[readMore]
+other = "Read more"
+
+[noPostsYet]
+other = "No posts yet."
+
+[backToPosts]
+other = "Back to posts"
+
+[notFoundMessage]
+other = "Page not found or moved."
+
+[returnToPostList]
+other = "Return to post list"
+
+[albumShortcodeRequiresImage]
+other = "The album shortcode requires at least one image: %s"
+
+[previousImage]
+other = "Previous image"
+
+[nextImage]
+other = "Next image"
+
+[goToImage]
+other = "Go to image %d"

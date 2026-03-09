@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ $paginator := .Paginate (.Site.RegularPages.ByDate.Reverse) }}
+  {{ .Scratch.Set "listPaginator" $paginator }}
+  {{ partial "posts/list-content.html" (dict
+    "paginator" $paginator
+    "showEndingText" true
+    "site" .Site
+  ) }}
+{{ end }}
+
+{{ define "scripts" }}
+  {{ with .Scratch.Get "listPaginator" }}
+    {{ partial "posts/list-scripts.html" .Pages }}
+  {{ end }}
+{{ end }}

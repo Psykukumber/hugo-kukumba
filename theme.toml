@@ -1,0 +1,11 @@
+name = "PKP Blog Theme"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "Minimal Hugo theme with Fira Code on a black background"
+homepage = "https://psykukumber.com"
+tags = ["blog", "minimal", "dark", "monospace"]
+features = ["responsive", "dark-mode"]
+min_version = "0.120.0"
+
+[author]
+  name = "Psykukumber"

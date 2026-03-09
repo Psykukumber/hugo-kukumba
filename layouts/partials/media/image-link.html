@@ -1,0 +1,33 @@
+{{- $title := .title | default "" -}}
+
+<a
+  class="{{ .class }}"
+  href="{{ .src | safeURL }}"
+  {{- with .width }}
+    data-pswp-width="{{ . }}"
+  {{- end }}
+  {{- with .height }}
+    data-pswp-height="{{ . }}"
+  {{- end }}
+  {{- with .thumb }}
+    data-thumb-src="{{ . }}"
+  {{- end }}
+  target="_blank"
+  rel="noreferrer"
+>
+  <img
+    src="{{ .src | safeURL }}"
+    alt="{{ .alt }}"
+    loading="lazy"
+    decoding="async"
+    {{- with .width }}
+      width="{{ . }}"
+    {{- end }}
+    {{- with .height }}
+      height="{{ . }}"
+    {{- end }}
+    {{- with $title }}
+      title="{{ . }}"
+    {{- end }}
+  >
+</a>

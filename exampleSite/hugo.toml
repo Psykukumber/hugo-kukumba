@@ -1,0 +1,78 @@
+# Base site metadata and theme selection.
+baseURL = "http://example.com/"
+languageCode = "en-US"
+defaultContentLanguage = "en"
+title = "hugo-kukumba"
+theme = "hugo-kukumba"
+
+# Number of posts per list page.
+pagerSize = 10
+
+# Markdown and syntax highlighting settings used by the theme.
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      # Required so standalone Markdown images can render as figure/figcaption.
+      wrapStandAloneImageWithinParagraph = false
+  [markup.highlight]
+    style = "tokyonight-night"
+
+# Theme-specific parameters exposed through templates and partials.
+[params]
+  description = "Demo site for local testing of the hugo-kukumba theme"
+  footerText = """
+  © 2026 Psykukumber Project
+  Built with [Hugo](https://gohugo.io) and [Codex](https://openai.com/codex)
+  """
+  postListEndingText = "Pagination will be shown here."
+  # Maximum length of plain text previews in post lists.
+  previewPlainLimit = 360
+
+  # Optional theme palette overrides exposed as CSS variables.
+  [params.themeColors]
+    bg = "#000000"
+    surface = "#0c0c0c"
+    text = "#e6e6e6"
+    muted = "#a0a0a0"
+    accent = "#08ba08"
+    border = "#242424"
+    inlineCodeBg = "#1a1b26"
+    inlineCodeText = "#7aa2f7"
+    inlineCodeBorder = "#2f3549"
+
+  # Optional font overrides for body text and code.
+  [params.themeFonts]
+    googleFontsURL = "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap"
+    body = "\"Nunito\", sans-serif"
+    code = "\"Fira Code\", monospace"
+
+  # Optional layout and responsive tokens.
+  [params.themeLayout]
+    contentMaxWidth = "900px"
+    contentSidePadding = "4vw"
+    postListThumbWidth = "160px"
+    postListThumbHeight = "100px"
+    previewMediaMaxWidth = "560px"
+    previewMediaMaxWidthMobile = "100%"
+    postImageMaxWidth = "80%"
+    albumImageMaxWidth = "80%"
+    albumThumbSize = "64px"
+    albumThumbSizeMobile = "52px"
+
+  # Optional single link in the header.
+  [params.headerLink]
+    name = "psykukumber.com"
+    url = "https://psykukumber.com"
+
+  # Optional footer links rendered as a flat list.
+  [[params.footerLinks]]
+    name = "GitHub"
+    url = "https://github.com/psykukumber/hugo-kukumba"
+
+  [[params.footerLinks]]
+    name = "Telegram"
+    url = "https://t.me/kkmbrz"
+
+  [[params.footerLinks]]
+    name = "X"
+    url = "https://x.com/psykukumber"

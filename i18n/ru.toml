@@ -1,0 +1,38 @@
+[footerLinks]
+other = "Ссылки в футере"
+
+[pagination]
+other = "Постраничная навигация"
+
+[previousPage]
+other = "Назад"
+
+[nextPage]
+other = "Вперед"
+
+[readMore]
+other = "Читать дальше"
+
+[noPostsYet]
+other = "Публикаций пока нет."
+
+[backToPosts]
+other = "Назад к постам"
+
+[notFoundMessage]
+other = "Страница не найдена или была перемещена."
+
+[returnToPostList]
+other = "Вернуться к списку постов"
+
+[albumShortcodeRequiresImage]
+other = "Shortcode album требует хотя бы одно изображение: %s"
+
+[previousImage]
+other = "Предыдущее изображение"
+
+[nextImage]
+other = "Следующее изображение"
+
+[goToImage]
+other = "Перейти к изображению %d"

@@ -1,0 +1,19 @@
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-text">
+      {{ $footerText := .Site.Params.footerText | default .Site.Title }}
+      {{ $footerText | replaceRE "\r?\n" "  \n" | markdownify }}
+    </div>
+    <nav class="footer-links" aria-label="{{ T "footerLinks" }}">
+      {{ with .Site.Params.footerLinks }}
+        {{ range . }}
+          {{ $url := .url | default .URL }}
+          {{ $label := .name | default .title | default $url }}
+          {{ if $url }}
+            <a href="{{ $url }}" class="footer-link">{{ $label }}</a>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </nav>
+  </div>
+</footer>

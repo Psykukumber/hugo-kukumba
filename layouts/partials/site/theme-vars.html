@@ -1,0 +1,88 @@
+{{- $colors := .Site.Params.themeColors -}}
+{{- $fonts := .Site.Params.themeFonts -}}
+{{- $layout := .Site.Params.themeLayout -}}
+<style>
+  {{- with ($fonts.googleFontsURL | default "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap") }}
+  @import url({{ . | safeCSS }});
+  {{- end }}
+
+  :root {
+    --bg: {{ $colors.bg | default "#000000" }};
+    --surface: {{ $colors.surface | default "#0c0c0c" }};
+    --text: {{ $colors.text | default "#e6e6e6" }};
+    --muted: {{ $colors.muted | default "#a0a0a0" }};
+    --accent: {{ $colors.accent | default "#08ba08" }};
+    --border: {{ $colors.border | default "#242424" }};
+    --inline-code-bg: {{ $colors.inlineCodeBg | default "#1a1b26" }};
+    --inline-code-text: {{ $colors.inlineCodeText | default "#7aa2f7" }};
+    --inline-code-border: {{ $colors.inlineCodeBorder | default "#2f3549" }};
+    --font-body: {{ ($fonts.body | default "\"Nunito\", sans-serif") | safeCSS }};
+    --font-code: {{ ($fonts.code | default "\"Fira Code\", monospace") | safeCSS }};
+    --content-max-width: {{ $layout.contentMaxWidth | default "900px" }};
+    --content-side-padding: {{ $layout.contentSidePadding | default "4vw" }};
+    --site-header-gap: {{ $layout.siteHeaderGap | default "12px" }};
+    --site-header-padding-top: {{ $layout.siteHeaderPaddingTop | default "28px" }};
+    --site-header-padding-bottom: {{ $layout.siteHeaderPaddingBottom | default "16px" }};
+    --content-padding-top: {{ $layout.contentPaddingTop | default "24px" }};
+    --site-footer-padding-top: {{ $layout.siteFooterPaddingTop | default "20px" }};
+    --site-footer-padding-bottom: {{ $layout.siteFooterPaddingBottom | default "28px" }};
+    --site-footer-gap: {{ $layout.siteFooterGap | default "20px" }};
+    --footer-links-gap: {{ $layout.footerLinksGap | default "14px" }};
+    --footer-links-gap-mobile: {{ $layout.footerLinksGapMobile | default "12px" }};
+    --footer-link-padding-y-mobile: {{ $layout.footerLinkPaddingYMobile | default "6px" }};
+    --footer-link-padding-x-mobile: {{ $layout.footerLinkPaddingXMobile | default "2px" }};
+    --header-link-padding-y-mobile: {{ $layout.headerLinkPaddingYMobile | default "6px" }};
+    --header-link-padding-x-mobile: {{ $layout.headerLinkPaddingXMobile | default "2px" }};
+    --post-list-gap: {{ $layout.postListGap | default "12px" }};
+    --post-list-gap-mobile: {{ $layout.postListGapMobile | default "4px" }};
+    --post-list-item-padding-y: {{ $layout.postListItemPaddingY | default "12px" }};
+    --post-list-top-gap: {{ $layout.postListTopGap | default "12px" }};
+    --post-list-top-gap-mobile: {{ $layout.postListTopGapMobile | default "2px" }};
+    --post-list-thumb-width: {{ $layout.postListThumbWidth | default "160px" }};
+    --post-list-thumb-height: {{ $layout.postListThumbHeight | default "100px" }};
+    --post-preview-font-size: {{ $layout.postPreviewFontSize | default "0.95rem" }};
+    --post-preview-font-size-mobile: {{ $layout.postPreviewFontSizeMobile | default "0.92rem" }};
+    --post-preview-offset-top: {{ $layout.postPreviewOffsetTop | default "8px" }};
+    --post-preview-stack-gap: {{ $layout.postPreviewStackGap | default "10px" }};
+    --post-preview-stack-gap-mobile: {{ $layout.postPreviewStackGapMobile | default "8px" }};
+    --post-read-more-offset-top: {{ $layout.postReadMoreOffsetTop | default "8px" }};
+    --post-list-ending-offset-top: {{ $layout.postListEndingOffsetTop | default "16px" }};
+    --pagination-gap: {{ $layout.paginationGap | default "10px" }};
+    --pagination-offset-top: {{ $layout.paginationOffsetTop | default "18px" }};
+    --preview-media-max-width: {{ $layout.previewMediaMaxWidth | default "560px" }};
+    --preview-media-max-width-mobile: {{ $layout.previewMediaMaxWidthMobile | default "100%" }};
+    --preview-embed-min-height: {{ $layout.previewEmbedMinHeight | default "315px" }};
+    --preview-embed-min-height-mobile: {{ $layout.previewEmbedMinHeightMobile | default "220px" }};
+    --preview-media-compact-scale-mobile: {{ $layout.previewMediaCompactScaleMobile | default "0.94" }};
+    --post-image-max-width: {{ $layout.postImageMaxWidth | default "80%" }};
+    --post-image-offset-y: {{ $layout.postImageOffsetY | default "20px" }};
+    --post-image-caption-offset-top: {{ $layout.postImageCaptionOffsetTop | default "8px" }};
+    --album-offset-y: {{ $layout.albumOffsetY | default "24px" }};
+    --album-viewport-min-height: {{ $layout.albumViewportMinHeight | default "280px" }};
+    --album-viewport-max-height: {{ $layout.albumViewportMaxHeight | default "72vh" }};
+    --album-viewport-max-height-cap: {{ $layout.albumViewportMaxHeightCap | default "720px" }};
+    --album-viewport-min-height-mobile: {{ $layout.albumViewportMinHeightMobile | default "220px" }};
+    --album-viewport-max-height-mobile: {{ $layout.albumViewportMaxHeightMobile | default "56vh" }};
+    --album-viewport-max-height-mobile-cap: {{ $layout.albumViewportMaxHeightMobileCap | default "520px" }};
+    --album-image-max-width: {{ $layout.albumImageMaxWidth | default "80%" }};
+    --album-image-max-height: {{ $layout.albumImageMaxHeight | default "60vh" }};
+    --album-image-max-height-cap: {{ $layout.albumImageMaxHeightCap | default "620px" }};
+    --album-image-max-height-mobile: {{ $layout.albumImageMaxHeightMobile | default "44vh" }};
+    --album-image-max-height-mobile-cap: {{ $layout.albumImageMaxHeightMobileCap | default "420px" }};
+    --album-controls-gap: {{ $layout.albumControlsGap | default "12px" }};
+    --album-controls-gap-mobile: {{ $layout.albumControlsGapMobile | default "10px" }};
+    --album-controls-offset-top: {{ $layout.albumControlsOffsetTop | default "10px" }};
+    --album-button-min-size: {{ $layout.albumButtonMinSize | default "44px" }};
+    --album-button-padding-y: {{ $layout.albumButtonPaddingY | default "8px" }};
+    --album-button-padding-x: {{ $layout.albumButtonPaddingX | default "12px" }};
+    --album-thumbs-gap: {{ $layout.albumThumbsGap | default "8px" }};
+    --album-thumbs-offset-top: {{ $layout.albumThumbsOffsetTop | default "10px" }};
+    --album-thumbs-padding-bottom: {{ $layout.albumThumbsPaddingBottom | default "4px" }};
+    --album-thumbs-padding-inline-preview: {{ $layout.albumThumbsPaddingInlinePreview | default "12px" }};
+    --album-thumb-size: {{ $layout.albumThumbSize | default "64px" }};
+    --album-thumb-size-mobile: {{ $layout.albumThumbSizeMobile | default "52px" }};
+    --post-meta-gap-mobile: {{ $layout.postMetaGapMobile | default "4px" }};
+    --post-meta-margin-top-mobile: {{ $layout.postMetaMarginTopMobile | default "0" }};
+    --post-meta-margin-bottom-mobile: {{ $layout.postMetaMarginBottomMobile | default "14px" }};
+  }
+</style>

@@ -1,0 +1,27 @@
+{{- $content := .Inner | strings.TrimSpace -}}
+{{- if not $content -}}
+  {{- errorf (printf (T "albumShortcodeRequiresImage") .Position) -}}
+{{- end -}}
+{{- $lines := split (replaceRE "\r\n?" "\n" $content) "\n" -}}
+
+<div class="post-album" data-album data-thumb-aria-label-template="{{ T "goToImage" }}">
+  <div class="post-album-viewport" data-album-viewport>
+    <div class="post-album-track">
+      {{- range $line := $lines -}}
+        {{- $line = strings.TrimSpace $line -}}
+        {{- if $line -}}
+          {{- $line | $.Page.RenderString (dict "display" "block") -}}
+        {{- end -}}
+      {{- end -}}
+    </div>
+  </div>
+  <div class="post-album-controls" data-album-controls>
+    <button class="post-album-button" type="button" data-album-prev aria-label="{{ T "previousImage" }}">
+      &larr;
+    </button>
+    <div class="post-album-thumbs" data-album-thumbs></div>
+    <button class="post-album-button" type="button" data-album-next aria-label="{{ T "nextImage" }}">
+      &rarr;
+    </button>
+  </div>
+</div>

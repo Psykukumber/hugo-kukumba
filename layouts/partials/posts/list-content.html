@@ -1,0 +1,16 @@
+{{- $paginator := .paginator -}}
+{{- $showEndingText := .showEndingText | default false -}}
+
+<ul class="post-list">
+  {{- range $paginator.Pages }}
+    {{ partial "posts/list-item.html" . }}
+  {{- end }}
+</ul>
+
+{{ partial "site/pagination.html" $paginator }}
+
+{{- if and $showEndingText (eq $paginator.TotalPages 1) -}}
+  {{- with .site.Params.postListEndingText }}
+    <p class="post-list-ending-text">{{ . }}</p>
+  {{- end }}
+{{- end -}}

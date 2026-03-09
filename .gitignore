@@ -1,0 +1,12 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# exampleSite build output
+exampleSite/public/
+exampleSite/resources/_gen/
+exampleSite/.hugo_build.lock
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ .Site.Language.LanguageCode | default .Site.Language.Lang | default "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    {{ partial "site/theme-vars.html" . }}
+    <link rel="stylesheet" href="{{ "css/base.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/posts.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/media.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "vendor/photoswipe/photoswipe.css" | relURL }}">
+  </head>
+  <body>
+    {{ partial "site/header.html" . }}
+
+    <main class="content">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    {{ partial "site/footer.html" . }}
+    <script src="{{ "js/site/twemoji.js" | relURL }}" defer></script>
+    {{ block "scripts" . }}{{ end }}
+  </body>
+</html>

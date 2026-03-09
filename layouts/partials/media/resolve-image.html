@@ -1,0 +1,51 @@
+{{/* Shared helper for resolving local page resources, external URLs, and optional thumbnails. */}}
+{{- $page := .page -}}
+{{- $path := .path | default "" -}}
+{{- $fallback := .fallback | default (slice) -}}
+{{- $thumbSpec := .thumbSpec | default "" -}}
+{{- $resource := "" -}}
+{{- $src := "" -}}
+{{- $width := 0 -}}
+{{- $height := 0 -}}
+{{- $thumb := "" -}}
+
+{{- if $path -}}
+  {{/* Relative paths are treated as page bundle resources; absolute/remote paths are kept as-is. */}}
+  {{- if and $page (not (urls.Parse $path).Scheme) (not (hasPrefix $path "/")) -}}
+    {{- $resource = $page.Resources.GetMatch $path -}}
+    {{- if not $resource -}}
+      {{- $resource = $page.Resources.GetMatch (printf "*%s" $path) -}}
+    {{- end -}}
+    {{- if not $resource -}}
+      {{- $src = $path -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $src = $path -}}
+  {{- end -}}
+{{- else if $page -}}
+  {{- range $pattern := $fallback -}}
+    {{- if not $resource -}}
+      {{- $resource = $page.Resources.GetMatch $pattern -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $resource -}}
+  {{- $src = $resource.RelPermalink -}}
+  {{- with $resource.Width }}{{ $width = . }}{{ end -}}
+  {{- with $resource.Height }}{{ $height = . }}{{ end -}}
+
+  {{/* Generate a lightweight thumbnail only for raster page resources. */}}
+  {{- if and $thumbSpec (eq $resource.ResourceType "image") (ne $resource.MediaType.SubType "svg") -}}
+    {{- $thumbResource := $resource.Fit $thumbSpec -}}
+    {{- $thumb = $thumbResource.RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return (dict
+  "resource" $resource
+  "src" $src
+  "width" $width
+  "height" $height
+  "thumb" $thumb
+) -}}

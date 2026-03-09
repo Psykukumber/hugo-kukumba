@@ -1,0 +1,50 @@
+{{/* Post list item supports plain, rich (before <!--more-->), and full previews. */}}
+{{- $image := .Params.cover | default .Params.image -}}
+{{- $coverImage := partial "media/resolve-image.html" (dict
+  "page" .
+  "path" $image
+  "fallback" (slice "cover.*" "featured.*" "thumbnail.*")
+) -}}
+{{- $previewMode := .Params.list_preview_mode | default "plain" -}}
+{{- $summaryHTML := .Summary -}}
+{{- $plainSummary := .Summary | plainify -}}
+{{- $plainLimit := .Site.Params.previewPlainLimit | default 360 -}}
+{{- $plainPreview := $plainSummary | truncate $plainLimit -}}
+{{- $showRichPreview := and (eq $previewMode "rich") .Truncated -}}
+{{- $showFullPreview := eq $previewMode "full" -}}
+{{- $htmlPreview := cond $showFullPreview .Content $summaryHTML -}}
+
+<li class="post-list-item">
+  {{- if and (not $showRichPreview) (not $showFullPreview) $coverImage.src }}
+    <a class="post-list-thumb-link" href="{{ $.RelPermalink }}" aria-label="{{ $.Title }}">
+      <img
+        class="post-list-thumb"
+        src="{{ $coverImage.src | safeURL }}"
+        alt="{{ $.Title }}"
+        loading="lazy"
+        decoding="async"
+      >
+    </a>
+  {{- end }}
+  <div class="post-list-main">
+    <div class="post-list-top">
+      <h2 class="post-list-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    </div>
+    {{/* Rich/full modes keep HTML; plain mode intentionally degrades to truncated text. */}}
+    {{- if or $showRichPreview $showFullPreview }}
+      {{ with $htmlPreview }}
+        <div class="post-preview">{{ . }}</div>
+      {{ end }}
+    {{- else }}
+      {{ with $plainPreview }}
+        <p class="post-preview">{{ . }}</p>
+      {{ end }}
+    {{- end }}
+    {{ if and .Truncated (not $showFullPreview) }}
+      <a class="post-read-more" href="{{ .RelPermalink }}">{{ T "readMore" }}</a>
+    {{ end }}
+  </div>
+</li>

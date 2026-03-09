@@ -1,0 +1,28 @@
+{{- $alt := .Text | default "" -}}
+{{- $caption := .Title | default "" -}}
+{{- $image := partial "media/resolve-image.html" (dict "page" .Page "path" .Destination "thumbSpec" "96x96") -}}
+{{- $resource := $image.resource -}}
+{{- $imageTitle := "" -}}
+{{- if or (not .IsBlock) (and (not $resource) $caption) -}}
+  {{- $imageTitle = $caption -}}
+{{- end -}}
+{{- $imageLink := partial "media/image-link.html" (dict
+  "class" (cond .IsBlock "post-image-link" "post-image-link post-image-link-inline")
+  "src" $image.src
+  "alt" $alt
+  "width" $image.width
+  "height" $image.height
+  "thumb" $image.thumb
+  "title" $imageTitle
+) -}}
+
+{{- if .IsBlock -}}
+  <figure class="post-image">
+    {{- $imageLink -}}
+    {{- with $caption }}
+      <figcaption>{{ . | markdownify }}</figcaption>
+    {{- end }}
+  </figure>
+{{- else -}}
+  {{- $imageLink -}}
+{{- end -}}
