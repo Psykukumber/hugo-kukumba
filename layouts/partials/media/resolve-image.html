@@ -31,14 +31,14 @@
 {{- end -}}
 
 {{- if $resource -}}
-  {{- $src = $resource.RelPermalink -}}
+  {{- $src = $resource.Permalink -}}
   {{- with $resource.Width }}{{ $width = . }}{{ end -}}
   {{- with $resource.Height }}{{ $height = . }}{{ end -}}
 
   {{/* Generate a lightweight thumbnail only for raster page resources. */}}
   {{- if and $thumbSpec (eq $resource.ResourceType "image") (ne $resource.MediaType.SubType "svg") -}}
     {{- $thumbResource := $resource.Fit $thumbSpec -}}
-    {{- $thumb = $thumbResource.RelPermalink -}}
+    {{- $thumb = $thumbResource.Permalink -}}
   {{- end -}}
 {{- end -}}
 

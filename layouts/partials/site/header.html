@@ -1,5 +1,5 @@
 <header class="site-header">
-  <a href="{{ "/" | relURL }}" class="site-title">{{ .Site.Title }}</a>
+  <a href="{{ "" | absLangURL }}" class="site-title">{{ .Site.Title }}</a>
   {{ with .Site.Params.headerLink }}
     {{ $url := .url | default .URL }}
     {{ $label := .name | default .title | default $url }}

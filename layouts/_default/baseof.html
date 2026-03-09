@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     {{ partial "site/theme-vars.html" . }}
-    <link rel="stylesheet" href="{{ "css/base.css" | relURL }}">
-    <link rel="stylesheet" href="{{ "css/posts.css" | relURL }}">
-    <link rel="stylesheet" href="{{ "css/media.css" | relURL }}">
-    <link rel="stylesheet" href="{{ "vendor/photoswipe/photoswipe.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/base.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/posts.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/media.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "vendor/photoswipe/photoswipe.css" | absURL }}">
   </head>
   <body>
     {{ partial "site/header.html" . }}
@@ -18,7 +18,7 @@
     </main>
 
     {{ partial "site/footer.html" . }}
-    <script src="{{ "js/site/twemoji.js" | relURL }}" defer></script>
+    <script src="{{ "js/site/twemoji.js" | absURL }}" defer></script>
     {{ block "scripts" . }}{{ end }}
   </body>
 </html>

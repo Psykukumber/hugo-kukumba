@@ -16,7 +16,7 @@
 
 <li class="post-list-item">
   {{- if and (not $showRichPreview) (not $showFullPreview) $coverImage.src }}
-    <a class="post-list-thumb-link" href="{{ $.RelPermalink }}" aria-label="{{ $.Title }}">
+    <a class="post-list-thumb-link" href="{{ $.Permalink }}" aria-label="{{ $.Title }}">
       <img
         class="post-list-thumb"
         src="{{ $coverImage.src | safeURL }}"
@@ -29,7 +29,7 @@
   <div class="post-list-main">
     <div class="post-list-top">
       <h2 class="post-list-title">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
       </h2>
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
     </div>
@@ -44,7 +44,7 @@
       {{ end }}
     {{- end }}
     {{ if and .Truncated (not $showFullPreview) }}
-      <a class="post-read-more" href="{{ .RelPermalink }}">{{ T "readMore" }}</a>
+      <a class="post-read-more" href="{{ .Permalink }}">{{ T "readMore" }}</a>
     {{ end }}
   </div>
 </li>
