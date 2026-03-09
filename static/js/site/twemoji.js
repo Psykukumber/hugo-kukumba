@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ].join(", ");
     var excludedSelector = "pre, code, kbd, samp, script, style, textarea";
     var twemojiScriptUrl = "https://cdn.jsdelivr.net/npm/@twemoji/api@17.0.2/dist/twemoji.min.js";
-    var twemojiIntegrity = "sha384-ffx6atwP+2a1uHhw+XT6uAGhdssJviyWfbhOgvzJqE1X+qUM1Aq3mS3WW70vSq6S";
     var parseOptions = {
         folder: "svg",
         ext: ".svg",
@@ -108,8 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var script = document.createElement("script");
         script.src = twemojiScriptUrl;
-        script.integrity = twemojiIntegrity;
-        script.crossOrigin = "anonymous";
         script.defer = true;
         script.dataset.twemojiCdn = "true";
         script.addEventListener("load", callback, { once: true });
