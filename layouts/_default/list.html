@@ -1,6 +1,6 @@
 {{ define "main" }}
   {{ $paginator := .Paginate (.Pages.ByDate.Reverse) }}
-  {{ .Scratch.Set "listPaginator" $paginator }}
+  {{ .Store.Set "listPaginator" $paginator }}
   <h1>{{ .Title }}</h1>
   {{ if .Content }}
     {{ .Content }}
@@ -15,7 +15,7 @@
 {{ end }}
 
 {{ define "scripts" }}
-  {{ with .Scratch.Get "listPaginator" }}
+  {{ with .Store.Get "listPaginator" }}
     {{ partial "posts/list-scripts.html" .Pages }}
   {{ end }}
 {{ end }}

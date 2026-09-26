@@ -1,6 +1,6 @@
 {{ define "main" }}
   {{ $paginator := .Paginate (.Site.RegularPages.ByDate.Reverse) }}
-  {{ .Scratch.Set "listPaginator" $paginator }}
+  {{ .Store.Set "listPaginator" $paginator }}
   {{ partial "posts/list-content.html" (dict
     "paginator" $paginator
     "showEndingText" true
@@ -9,7 +9,7 @@
 {{ end }}
 
 {{ define "scripts" }}
-  {{ with .Scratch.Get "listPaginator" }}
+  {{ with .Store.Get "listPaginator" }}
     {{ partial "posts/list-scripts.html" .Pages }}
   {{ end }}
 {{ end }}
