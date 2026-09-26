@@ -397,7 +397,7 @@ content/posts/my-post/
   code = "\"Fira Code\", monospace"
 ```
 
-`body` используется для основного текста сайта. `code` используется для inline code и code blocks. Из конфига можно переопределить и import URL, и итоговые `font-family` значения.
+`body` используется для основного текста сайта. `code` используется для inline code и code blocks. Из конфига можно переопределить и URL стилей шрифтов (подключается через `<link>`), и итоговые `font-family` значения.
 
 ### Layout темы
 

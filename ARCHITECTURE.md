@@ -161,7 +161,7 @@ Responsibilities:
 - `posts.css`: post lists, metadata, pagination, post previews
 - `media.css`: code blocks, images, albums, preview media, lightbox-related layout
 
-Theme color values may be overridden through `params.themeColors`. Font settings may be overridden through `params.themeFonts`. Layout and responsive sizing tokens may be overridden through `params.themeLayout`. `partials/site/theme-vars.html` maps those config values to the CSS variables consumed by `base.css`, `posts.css`, and `media.css`, and can emit an optional Google Fonts import URL.
+Theme color values may be overridden through `params.themeColors`. Font settings may be overridden through `params.themeFonts`. Layout and responsive sizing tokens may be overridden through `params.themeLayout`. `partials/site/theme-vars.html` maps those config values to the CSS variables consumed by `base.css`, `posts.css`, and `media.css`, and emits the font stylesheet `<link>` (plus `preconnect` hints when it points to Google Fonts).
 
 Prefer extending the existing groups instead of reintroducing a monolithic stylesheet.
 

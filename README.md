@@ -399,7 +399,7 @@ These values map directly to the theme CSS variables, so you can change the pale
   code = "\"Fira Code\", monospace"
 ```
 
-`body` is used for the main site text. `code` is used for inline code and code blocks. You can override both the import URL and the resulting `font-family` values from config.
+`body` is used for the main site text. `code` is used for inline code and code blocks. You can override both the font stylesheet URL (loaded with a `<link>` tag) and the resulting `font-family` values from config.
 
 ### Theme Layout
 
