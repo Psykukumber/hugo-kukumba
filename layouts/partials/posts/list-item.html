@@ -4,7 +4,10 @@
   "page" .
   "path" $image
   "fallback" (slice "cover.*" "featured.*" "thumbnail.*")
+  "thumbSpec" "800x800"
 ) -}}
+{{/* Prefer the resized copy; remote, static and SVG covers have no thumb and use the original. */}}
+{{- $coverSrc := $coverImage.thumb | default $coverImage.src -}}
 {{- $previewMode := .Params.list_preview_mode | default "plain" -}}
 {{- $summaryHTML := .Summary -}}
 {{- $plainSummary := .Summary | plainify -}}
@@ -15,11 +18,11 @@
 {{- $htmlPreview := cond $showFullPreview .Content $summaryHTML -}}
 
 <li class="post-list-item">
-  {{- if and (not $showRichPreview) (not $showFullPreview) $coverImage.src }}
+  {{- if and (not $showRichPreview) (not $showFullPreview) $coverSrc }}
     <a class="post-list-thumb-link" href="{{ $.Permalink }}" aria-label="{{ $.Title }}">
       <img
         class="post-list-thumb"
-        src="{{ $coverImage.src | safeURL }}"
+        src="{{ $coverSrc | safeURL }}"
         alt="{{ $.Title }}"
         loading="lazy"
         decoding="async"
