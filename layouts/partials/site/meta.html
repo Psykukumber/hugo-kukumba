@@ -1,0 +1,56 @@
+{{/* Page metadata: description, social previews (Open Graph), RSS discovery, and favicon. */}}
+{{- $title := cond .IsHome site.Title .Title -}}
+
+{{- $description := .Description -}}
+{{- if and (not $description) .IsPage -}}
+  {{- $description = .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace | truncate 160 -}}
+{{- end -}}
+{{- $description = $description | default site.Params.description -}}
+
+{{- $image := dict -}}
+{{- if .IsPage -}}
+  {{- $image = partial "media/resolve-image.html" (dict
+    "page" .
+    "path" (.Params.cover | default .Params.image)
+    "fallback" (slice "cover.*" "featured.*" "thumbnail.*")
+    "thumbSpec" "1200x1200"
+  ) -}}
+{{- end -}}
+{{- /* Social networks need an absolute URL; site-root paths are resolved against baseURL. */ -}}
+{{- $imageURL := "" -}}
+{{- with $image.thumb | default $image.src -}}
+  {{- $imageURL = cond (strings.HasPrefix . "/") (strings.TrimPrefix "/" . | absURL) (absURL .) -}}
+{{- end -}}
+
+{{- with $description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+{{- with $description }}
+<meta property="og:description" content="{{ . }}">
+{{- end }}
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+{{- with $imageURL }}
+<meta property="og:image" content="{{ . }}">
+<meta name="twitter:card" content="summary_large_image">
+{{- else }}
+<meta name="twitter:card" content="summary">
+{{- end }}
+
+{{- /* Section pages link their own feed; other pages link the site-wide feed. */ -}}
+{{- $feed := .OutputFormats.Get "rss" -}}
+{{- if not $feed -}}
+  {{- $feed = site.Home.OutputFormats.Get "rss" -}}
+{{- end -}}
+{{- with $feed }}
+<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{- end }}
+
+{{- with site.Params.favicon | default "favicon.svg" }}
+<link rel="icon" href="{{ strings.TrimPrefix "/" . | absURL }}"{{ if strings.HasSuffix . ".svg" }} type="image/svg+xml"{{ end }}>
+{{- end }}

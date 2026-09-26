@@ -96,7 +96,7 @@ hugo server --themesDir ../..
 
 Тема сгруппирована по функциональным зонам:
 
-- `layouts/partials/site/`: header, footer, pagination, runtime theme variables и layout tokens
+- `layouts/partials/site/`: header, footer, pagination, метаданные страницы (description, Open Graph, RSS, favicon), runtime theme variables и layout tokens
 - `layouts/partials/posts/`: карточки постов, рендер списков, решения по подключению JS на list-page
 - `layouts/partials/media/`: общие media-helper'ы, image markup, album markup
 - `layouts/shortcodes/album.html`: публичный shortcode `{{< album >}}`
@@ -310,6 +310,20 @@ content/posts/my-post/
 - на viewport альбома работает touch swipe
 
 ## Параметры темы
+
+### Метаданные страницы
+
+На каждой странице выводятся meta-тег `description`, теги Open Graph для превью ссылок в мессенджерах и соцсетях, ссылка на RSS-ленту и favicon.
+
+- description: `description` из front matter, иначе у постов — начало текста (до 160 символов), иначе `params.description`
+- картинка превью: та же обложка, что и в списке постов (`cover`, `image` или `cover.*` / `featured.*` / `thumbnail.*` в page bundle)
+
+Тема содержит `favicon.svg` по умолчанию. Чтобы заменить его, положите свой `static/favicon.svg` в сайт или укажите другой файл:
+
+```toml
+[params]
+  favicon = "favicon.png"
+```
 
 ### Header Link
 

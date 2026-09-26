@@ -18,6 +18,8 @@ The theme stays intentionally small: templates produce the markup, CSS is split 
 
 ```text
 baseof.html
+|- site/meta.html
+|- site/theme-vars.html
 |- site/header.html
 |- main block
 |  |- index.html
@@ -53,6 +55,7 @@ Responsibilities:
 
 - loads shared CSS
 - loads PhotoSwipe CSS
+- renders page metadata (description, Open Graph, RSS link, favicon) through `partials/site/meta.html`
 - injects runtime theme CSS variables and font settings through `partials/site/theme-vars.html`
 - renders site header and footer partials
 - exposes the `main` and `scripts` blocks
@@ -73,6 +76,7 @@ Located in `layouts/partials/site/`.
 - `header.html`
 - `footer.html`
 - `pagination.html`
+- `meta.html`
 - `theme-vars.html`
 
 These partials should stay generic and free of post-specific logic.

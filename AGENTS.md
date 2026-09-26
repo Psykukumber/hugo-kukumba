@@ -26,7 +26,7 @@ Ignore generated artifacts:
 - `layouts/_default/`:
   Base templates and page layouts.
 - `layouts/partials/site/`:
-  Header, footer, pagination, and runtime theme variables.
+  Header, footer, pagination, page metadata, and runtime theme variables.
 - `layouts/partials/posts/`:
   Shared list rendering, post card rendering, and list-page script decisions.
 - `layouts/partials/media/`:

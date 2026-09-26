@@ -98,7 +98,7 @@ hugo server --themesDir ../..
 
 The theme is grouped by feature area:
 
-- `layouts/partials/site/`: header, footer, pagination, runtime theme variables and layout tokens
+- `layouts/partials/site/`: header, footer, pagination, page metadata (description, Open Graph, RSS, favicon), runtime theme variables and layout tokens
 - `layouts/partials/posts/`: post cards, list rendering, list-page script decisions
 - `layouts/partials/media/`: shared media helpers, image markup, album markup
 - `layouts/shortcodes/album.html`: public `{{< album >}}` shortcode
@@ -312,6 +312,20 @@ Album behavior:
 - touch swipe is supported on the album viewport
 
 ## Theme Parameters
+
+### Page Metadata
+
+Every page gets a `description` meta tag, Open Graph tags for link previews in messengers and social networks, an RSS feed link, and a favicon.
+
+- description: front matter `description`, otherwise the post summary (up to 160 characters) on posts, otherwise `params.description`
+- preview image: the same cover image as in post lists (`cover`, `image`, or `cover.*` / `featured.*` / `thumbnail.*` in the page bundle)
+
+The theme ships a default `favicon.svg`. To replace it, put your own `static/favicon.svg` into the site, or point to another file:
+
+```toml
+[params]
+  favicon = "favicon.png"
+```
 
 ### Header Link
 
