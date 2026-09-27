@@ -156,6 +156,7 @@ Any change to media resolution should stay aligned between the render hook and l
 
 CSS is split into three files:
 
+- `static/css/fonts.css`
 - `static/css/base.css`
 - `static/css/posts.css`
 - `static/css/media.css`
@@ -166,7 +167,7 @@ Responsibilities:
 - `posts.css`: post lists, metadata, pagination, post previews
 - `media.css`: code blocks, images, albums, preview media, lightbox-related layout
 
-Theme color values may be overridden through `params.themeColors`. Font settings may be overridden through `params.themeFonts`. Layout and responsive sizing tokens may be overridden through `params.themeLayout`. `partials/site/theme-vars.html` maps those config values to the CSS variables consumed by `base.css`, `posts.css`, and `media.css`, and emits the font stylesheet `<link>` (plus `preconnect` hints when it points to Google Fonts).
+Theme color values may be overridden through `params.themeColors`. Font settings may be overridden through `params.themeFonts`. Layout and responsive sizing tokens may be overridden through `params.themeLayout`. `partials/site/theme-vars.html` maps those config values to the CSS variables consumed by `base.css`, `posts.css`, and `media.css`, and links the font stylesheet: the bundled `css/fonts.css` (files in `static/vendor/fonts/`) by default, or `params.themeFonts.googleFontsURL` (plus `preconnect` hints for Google Fonts) when it is set.
 
 Prefer extending the existing groups instead of reintroducing a monolithic stylesheet.
 

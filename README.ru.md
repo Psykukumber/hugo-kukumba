@@ -48,7 +48,6 @@ pagerSize = 10
     inlineCodeBorder = "#2f3549"
 
   [params.themeFonts]
-    googleFontsURL = "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap"
     body = "\"Nunito\", sans-serif"
     code = "\"Fira Code\", monospace"
 
@@ -101,6 +100,7 @@ hugo server --themesDir ../..
 - `layouts/partials/media/`: общие media-helper'ы, image markup, album markup
 - `layouts/shortcodes/album.html`: публичный shortcode `{{< album >}}`
 - `layouts/_default/_markup/render-image.html`: render hook для Markdown-изображений
+- `static/css/fonts.css`: встроенные Nunito и Fira Code (`@font-face`)
 - `static/css/base.css`: глобальный layout, shell, ссылки
 - `static/css/posts.css`: списки постов, метаданные, пагинация, preview
 - `static/css/media.css`: код, изображения, альбомы, lightbox-related layout
@@ -392,12 +392,21 @@ content/posts/my-post/
 
 ```toml
 [params.themeFonts]
-  googleFontsURL = "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap"
   body = "\"Nunito\", sans-serif"
   code = "\"Fira Code\", monospace"
 ```
 
-`body` используется для основного текста сайта. `code` используется для inline code и code blocks. Из конфига можно переопределить и URL стилей шрифтов (подключается через `<link>`), и итоговые `font-family` значения.
+`body` используется для основного текста сайта. `code` используется для inline code и code blocks.
+
+Nunito и Fira Code встроены в тему и лежат в `static/vendor/fonts/` (вариативные шрифты из [Fontsource](https://fontsource.org/), лицензия SIL Open Font License 1.1), поэтому страницы не обращаются к Google Fonts. Включены латиница, расширенная латиница, кириллица и расширенная кириллица; браузер скачивает только те части, которые нужны странице. Для других алфавитов (например, греческого или вьетнамского) используется системный шрифт.
+
+Чтобы вместо них подключить другие шрифты из Google Fonts, задайте `googleFontsURL` и укажите новые семейства в `body` / `code`. Встроенные шрифты тогда не загружаются:
+
+```toml
+[params.themeFonts]
+  googleFontsURL = "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+  body = "\"Inter\", sans-serif"
+```
 
 ### Layout темы
 

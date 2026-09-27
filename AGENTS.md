@@ -36,7 +36,7 @@ Ignore generated artifacts:
 - `layouts/_default/_markup/render-image.html`:
   Markdown image render hook.
 - `static/css/`:
-  Split by responsibility: `base.css`, `posts.css`, `media.css`.
+  Split by responsibility: `fonts.css`, `base.css`, `posts.css`, `media.css`.
 - `static/js/site/twemoji.js`:
   Lazy-loaded Twemoji support for text content.
 - `static/js/media/gallery.js`:

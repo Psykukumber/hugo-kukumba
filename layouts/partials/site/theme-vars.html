@@ -1,13 +1,15 @@
 {{- $colors := .Site.Params.themeColors -}}
 {{- $fonts := .Site.Params.themeFonts -}}
 {{- $layout := .Site.Params.themeLayout -}}
-{{- /* A <link> lets the browser start loading fonts right away; @import inside <style> waited for the style block first. */ -}}
-{{- with ($fonts.googleFontsURL | default "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap") }}
+{{- /* Fonts are bundled with the theme by default; googleFontsURL opts into an external stylesheet instead. */ -}}
+{{- with $fonts.googleFontsURL }}
   {{- if eq (urls.Parse .).Host "fonts.googleapis.com" }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   {{- end }}
 <link rel="stylesheet" href="{{ . }}">
+{{- else }}
+<link rel="stylesheet" href="{{ "css/fonts.css" | absURL }}">
 {{- end }}
 <style>
   :root {

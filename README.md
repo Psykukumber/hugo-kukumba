@@ -50,7 +50,6 @@ pagerSize = 10
     inlineCodeBorder = "#2f3549"
 
   [params.themeFonts]
-    googleFontsURL = "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap"
     body = "\"Nunito\", sans-serif"
     code = "\"Fira Code\", monospace"
 
@@ -103,6 +102,7 @@ The theme is grouped by feature area:
 - `layouts/partials/media/`: shared media helpers, image markup, album markup
 - `layouts/shortcodes/album.html`: public `{{< album >}}` shortcode
 - `layouts/_default/_markup/render-image.html`: Markdown image render hook
+- `static/css/fonts.css`: bundled Nunito and Fira Code (`@font-face`)
 - `static/css/base.css`: global layout, shell, links
 - `static/css/posts.css`: post lists, metadata, pagination, previews
 - `static/css/media.css`: code, images, albums, lightbox-related layout
@@ -394,12 +394,21 @@ These values map directly to the theme CSS variables, so you can change the pale
 
 ```toml
 [params.themeFonts]
-  googleFontsURL = "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;700&display=swap"
   body = "\"Nunito\", sans-serif"
   code = "\"Fira Code\", monospace"
 ```
 
-`body` is used for the main site text. `code` is used for inline code and code blocks. You can override both the font stylesheet URL (loaded with a `<link>` tag) and the resulting `font-family` values from config.
+`body` is used for the main site text. `code` is used for inline code and code blocks.
+
+Nunito and Fira Code are bundled with the theme in `static/vendor/fonts/` (variable fonts from [Fontsource](https://fontsource.org/), SIL Open Font License 1.1), so pages make no requests to Google Fonts. Latin, Latin Extended, Cyrillic, and Cyrillic Extended are included; browsers download only the parts a page actually uses. Other scripts (for example Greek or Vietnamese) fall back to a system font.
+
+To use other fonts from Google Fonts instead, set `googleFontsURL` and point `body` / `code` to the new families. The bundled fonts are then not loaded:
+
+```toml
+[params.themeFonts]
+  googleFontsURL = "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+  body = "\"Inter\", sans-serif"
+```
 
 ### Theme Layout
 
