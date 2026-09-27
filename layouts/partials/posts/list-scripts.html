@@ -1,13 +1,7 @@
 {{- $needsGallery := false -}}
 {{- range . -}}
   {{- if not $needsGallery -}}
-    {{- $previewMode := .Params.list_preview_mode | default "plain" -}}
-    {{- $previewHTML := "" -}}
-    {{- if and (eq $previewMode "rich") .Truncated -}}
-      {{- $previewHTML = .Summary -}}
-    {{- else if eq $previewMode "full" -}}
-      {{- $previewHTML = .Content -}}
-    {{- end -}}
+    {{- $previewHTML := (partial "posts/preview-mode.html" .).html -}}
     {{- if and $previewHTML (findRE `<(img|iframe|video)\b|data-album\b` $previewHTML 1) -}}
       {{- $needsGallery = true -}}
     {{- end -}}

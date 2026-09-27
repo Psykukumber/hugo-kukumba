@@ -8,14 +8,12 @@
 ) -}}
 {{/* Prefer the resized copy; remote, static and SVG covers have no thumb and use the original. */}}
 {{- $coverSrc := $coverImage.thumb | default $coverImage.src -}}
-{{- $previewMode := .Params.list_preview_mode | default "plain" -}}
-{{- $summaryHTML := .Summary -}}
-{{- $plainSummary := .Summary | plainify -}}
+{{- $preview := partial "posts/preview-mode.html" . -}}
+{{- $showRichPreview := $preview.showRich -}}
+{{- $showFullPreview := $preview.showFull -}}
+{{- $htmlPreview := $preview.html -}}
 {{- $plainLimit := .Site.Params.previewPlainLimit | default 360 -}}
-{{- $plainPreview := $plainSummary | truncate $plainLimit -}}
-{{- $showRichPreview := and (eq $previewMode "rich") .Truncated -}}
-{{- $showFullPreview := eq $previewMode "full" -}}
-{{- $htmlPreview := cond $showFullPreview .Content $summaryHTML -}}
+{{- $plainPreview := .Summary | plainify | truncate $plainLimit -}}
 
 <li class="post-list-item">
   {{- if and (not $showRichPreview) (not $showFullPreview) $coverSrc }}

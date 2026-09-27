@@ -1,0 +1,16 @@
+{{/* Shared preview decision for post lists: list-item.html renders it, list-scripts.html scans it for media. */}}
+{{- $mode := .Params.list_preview_mode | default "plain" -}}
+{{- $showRich := and (eq $mode "rich") .Truncated -}}
+{{- $showFull := eq $mode "full" -}}
+{{- $html := "" -}}
+{{- if $showFull -}}
+  {{- $html = .Content -}}
+{{- else if $showRich -}}
+  {{- $html = .Summary -}}
+{{- end -}}
+
+{{- return (dict
+  "showRich" $showRich
+  "showFull" $showFull
+  "html" $html
+) -}}

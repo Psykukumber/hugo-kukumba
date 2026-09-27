@@ -26,12 +26,14 @@ baseof.html
 |  |  `- partials/posts/
 |  |     |- list-content.html
 |  |     |- list-item.html
-|  |     `- list-scripts.html
+|  |     |- list-scripts.html
+|  |     `- preview-mode.html
 |  |- _default/list.html
 |  |  `- partials/posts/
 |  |     |- list-content.html
 |  |     |- list-item.html
-|  |     `- list-scripts.html
+|  |     |- list-scripts.html
+|  |     `- preview-mode.html
 |  |- _default/single.html
 |  |  |- .Content
 |  |  |  |- _markup/render-image.html
@@ -88,6 +90,9 @@ Located in `layouts/partials/posts/`.
 - `list-content.html`
 - `list-item.html`
 - `list-scripts.html`
+- `preview-mode.html`
+
+`preview-mode.html` decides once per post whether the list shows a plain, rich, or full preview. Both `list-item.html` (rendering) and `list-scripts.html` (gallery script detection) use it, so the two cannot drift apart.
 
 Responsibilities:
 
