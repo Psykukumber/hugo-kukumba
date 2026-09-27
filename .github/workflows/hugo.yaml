@@ -4,16 +4,14 @@ on:
   push:
     branches:
       - main
+  # Pull requests only build the site to catch template errors; they never deploy.
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -25,6 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         id: pages
         uses: actions/configure-pages@v5
 
@@ -46,13 +45,19 @@ jobs:
             --minify
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./exampleSite/public
 
   deploy:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     needs: build
+    # Only one deployment at a time; pull request builds are not blocked by it.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
