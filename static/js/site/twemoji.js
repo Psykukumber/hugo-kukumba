@@ -46,19 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
         textNode.parentNode.removeChild(textNode);
     }
 
+    function isEligibleTextNode(node) {
+        // Skip whitespace-only text and anything inside code-like elements.
+        if (!node.nodeValue || !node.nodeValue.trim()) {
+            return false;
+        }
+
+        return Boolean(node.parentElement) && !node.parentElement.closest(excludedSelector);
+    }
+
     function parseTarget(target) {
         // Walk text nodes so nested code fragments inside paragraphs or list items stay untouched.
         var walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT, {
             acceptNode: function (node) {
-                if (!node.nodeValue || !node.nodeValue.trim()) {
-                    return NodeFilter.FILTER_REJECT;
-                }
-
-                if (!node.parentElement || node.parentElement.closest(excludedSelector)) {
-                    return NodeFilter.FILTER_REJECT;
-                }
-
-                return NodeFilter.FILTER_ACCEPT;
+                return isEligibleTextNode(node)
+                    ? NodeFilter.FILTER_ACCEPT
+                    : NodeFilter.FILTER_REJECT;
             }
         });
         var textNodes = [];
@@ -74,15 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Avoid loading the CDN runtime at all when there is no emoji on the page.
         var walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT, {
             acceptNode: function (node) {
-                if (!node.nodeValue || !node.nodeValue.trim()) {
-                    return NodeFilter.FILTER_REJECT;
-                }
-
-                if (!node.parentElement || node.parentElement.closest(excludedSelector)) {
-                    return NodeFilter.FILTER_REJECT;
-                }
-
-                return emojiPattern.test(node.nodeValue)
+                return isEligibleTextNode(node) && emojiPattern.test(node.nodeValue)
                     ? NodeFilter.FILTER_ACCEPT
                     : NodeFilter.FILTER_REJECT;
             }
