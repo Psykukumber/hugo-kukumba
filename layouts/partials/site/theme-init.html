@@ -1,0 +1,56 @@
+{{- /* Resolves the colour theme before first paint to avoid a flash. The user's choice (dark | light | auto) lives in html[data-theme-choice]; html[data-theme] holds the resolved dark or light value that CSS reads. */ -}}
+<script>
+(function () {
+  var KEY = "kukumba-theme";
+  var fallback = {{ .Site.Params.themeDefault | default "dark" }};
+  var root = document.documentElement;
+  var media = window.matchMedia("(prefers-color-scheme: light)");
+
+  function isValid(choice) {
+    return choice === "dark" || choice === "light" || choice === "auto";
+  }
+
+  function readStored() {
+    try {
+      var value = localStorage.getItem(KEY);
+      return isValid(value) ? value : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function apply(choice) {
+    root.setAttribute("data-theme-choice", choice);
+    root.setAttribute("data-theme", choice === "auto" ? (media.matches ? "light" : "dark") : choice);
+  }
+
+  window.kukumbaTheme = {
+    get: function () {
+      return root.getAttribute("data-theme-choice");
+    },
+    set: function (choice) {
+      if (!isValid(choice)) {
+        return;
+      }
+      try {
+        localStorage.setItem(KEY, choice);
+      } catch (error) {}
+      apply(choice);
+    }
+  };
+
+  function onSystemChange() {
+    if (window.kukumbaTheme.get() === "auto") {
+      apply("auto");
+    }
+  }
+
+  if (media.addEventListener) {
+    media.addEventListener("change", onSystemChange);
+  } else if (media.addListener) {
+    media.addListener(onSystemChange);
+  }
+
+  apply(readStored() || (isValid(fallback) ? fallback : "dark"));
+})();
+</script>

@@ -19,6 +19,7 @@ The theme stays intentionally small: templates produce the markup, CSS is split 
 ```text
 baseof.html
 |- site/meta.html
+|- site/theme-init.html
 |- site/theme-vars.html
 |- site/header.html
 |- main block
@@ -174,6 +175,7 @@ Prefer extending the existing groups instead of reintroducing a monolithic style
 ## JavaScript Structure
 
 - `static/js/media/gallery.js`
+- `static/js/site/theme-toggle.js`
 - `static/js/site/twemoji.js`
 - `static/js/posts/back-link.js`
 
@@ -185,6 +187,15 @@ Handles:
 - album thumbnails
 - PhotoSwipe initialization
 - standalone image galleries in `.post-body` and `.post-preview`
+
+### theme-toggle.js
+
+Handles:
+
+- the auto / light / dark buttons in the header (`partials/site/theme-toggle.html`)
+- showing the switcher only when JavaScript is available
+
+The theme itself is resolved earlier by the inline script in `partials/site/theme-init.html`: it reads the saved choice (or `params.themeDefault`), sets `html[data-theme-choice]` (the choice) and `html[data-theme]` (resolved `dark` or `light`), follows system changes in `auto` mode, and exposes `window.kukumbaTheme`. Light colors come from `params.themeColorsLight` through `:root[data-theme="light"]` in `theme-vars.html`.
 
 ### twemoji.js
 

@@ -41,8 +41,11 @@ pagerSize = 10
     surface = "#0c0c0c"
     text = "#e6e6e6"
     muted = "#a0a0a0"
-    accent = "#08ba08"
+    accent = "#08af08"
+    accentHover = "#39c834"
+    accentSubtle = "#013f01"
     border = "#242424"
+    outline = "#6b6b6b"
     inlineCodeBg = "#1a1b26"
     inlineCodeText = "#7aa2f7"
     inlineCodeBorder = "#2f3549"
@@ -379,14 +382,43 @@ content/posts/my-post/
   surface = "#0c0c0c"
   text = "#e6e6e6"
   muted = "#a0a0a0"
-  accent = "#08ba08"
+  accent = "#08af08"
+  accentHover = "#39c834"
+  accentSubtle = "#013f01"
   border = "#242424"
+  outline = "#6b6b6b"
   inlineCodeBg = "#1a1b26"
   inlineCodeText = "#7aa2f7"
   inlineCodeBorder = "#2f3549"
 ```
 
 Эти значения напрямую мапятся в CSS-переменные темы, поэтому палитру можно менять без правки `base.css`.
+
+### Светлая тема и переключатель
+
+В шапке есть переключатель из трёх кнопок: авто (как в системе), светлая и тёмная. Выбор посетителя сохраняется в браузере (`localStorage`). Пока выбора нет, берётся `themeDefault`.
+
+```toml
+[params]
+  themeDefault = "dark"   # "dark" (по умолчанию), "light" или "auto"
+  themeToggle = true      # false скрывает переключатель
+
+[params.themeColorsLight]
+  bg = "#ffffff"
+  surface = "#f6f6f6"
+  text = "#111111"
+  muted = "#595959"
+  accent = "#027202"
+  accentHover = "#005800"
+  accentSubtle = "#e2ffdf"
+  border = "#e0e0e0"
+  outline = "#767676"
+  inlineCodeBg = "#eef1f8"
+  inlineCodeText = "#2b4fa8"
+  inlineCodeBorder = "#d3d9ea"
+```
+
+`themeColors` задаёт тёмную палитру, `themeColorsLight` светлую. Акцент в светлой теме темнее, чтобы ссылки читались на белом. Подсвеченные блоки кода остаются в стиле `tokyonight-night` в обеих темах.
 
 ### Шрифты темы
 

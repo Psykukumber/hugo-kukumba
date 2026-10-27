@@ -1,10 +1,15 @@
 <header class="site-header">
   <a href="{{ "" | absLangURL }}" class="site-title">{{ .Site.Title }}</a>
-  {{ with .Site.Params.headerLink }}
-    {{ $url := .url | default .URL }}
-    {{ $label := .name | default .title | default $url }}
-    {{ if $url }}
-      <a href="{{ $url }}" class="header-link">{{ $label }}</a>
+  <div class="header-actions">
+    {{ with .Site.Params.headerLink }}
+      {{ $url := .url | default .URL }}
+      {{ $label := .name | default .title | default $url }}
+      {{ if $url }}
+        <a href="{{ $url }}" class="header-link">{{ $label }}</a>
+      {{ end }}
     {{ end }}
-  {{ end }}
+    {{ if ne .Site.Params.themeToggle false }}
+      {{ partial "site/theme-toggle.html" . }}
+    {{ end }}
+  </div>
 </header>

@@ -24,6 +24,10 @@ pagerSize = 10
   © 2026 Psykukumber Project
   Built with [Hugo](https://gohugo.io) and [Codex](https://openai.com/codex)
   """
+  # Theme used on a first visit: "dark" (default), "light" or "auto" (follow the system).
+  themeDefault = "dark"
+  # Set to false to hide the theme switcher in the header.
+  themeToggle = true
   postListEndingText = "Pagination will be shown here."
   # Maximum length of plain text previews in post lists.
   previewPlainLimit = 360
@@ -34,11 +38,29 @@ pagerSize = 10
     surface = "#0c0c0c"
     text = "#e6e6e6"
     muted = "#a0a0a0"
-    accent = "#08ba08"
+    accent = "#08af08"
+    accentHover = "#39c834"
+    accentSubtle = "#013f01"
     border = "#242424"
+    outline = "#6b6b6b"
     inlineCodeBg = "#1a1b26"
     inlineCodeText = "#7aa2f7"
     inlineCodeBorder = "#2f3549"
+
+  # Optional light palette, used when the light theme is active.
+  [params.themeColorsLight]
+    bg = "#ffffff"
+    surface = "#f6f6f6"
+    text = "#111111"
+    muted = "#595959"
+    accent = "#027202"
+    accentHover = "#005800"
+    accentSubtle = "#e2ffdf"
+    border = "#e0e0e0"
+    outline = "#767676"
+    inlineCodeBg = "#eef1f8"
+    inlineCodeText = "#2b4fa8"
+    inlineCodeBorder = "#d3d9ea"
 
   # Optional font overrides for body text and code.
   # Nunito and Fira Code are bundled with the theme; set googleFontsURL

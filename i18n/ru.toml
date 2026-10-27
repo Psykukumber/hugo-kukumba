@@ -36,3 +36,15 @@ other = "Следующее изображение"
 
 [goToImage]
 other = "Перейти к изображению %d"
+
+[themeSwitcher]
+other = "Цветовая тема"
+
+[themeAuto]
+other = "Авто (как в системе)"
+
+[themeLight]
+other = "Светлая"
+
+[themeDark]
+other = "Тёмная"

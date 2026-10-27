@@ -36,3 +36,15 @@ other = "Next image"
 
 [goToImage]
 other = "Go to image %d"
+
+[themeSwitcher]
+other = "Color theme"
+
+[themeAuto]
+other = "Auto (system)"
+
+[themeLight]
+other = "Light"
+
+[themeDark]
+other = "Dark"

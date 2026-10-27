@@ -32,6 +32,12 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--site-header-gap);
+}
+
 .site-title {
     color: var(--text);
     font-weight: 700;
@@ -45,6 +51,51 @@ body {
 
 .header-link:hover {
     color: var(--text);
+}
+
+.theme-toggle {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-pill);
+}
+
+.theme-toggle[hidden] {
+    display: none;
+}
+
+.theme-toggle-button {
+    appearance: none;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.theme-toggle-button:hover {
+    color: var(--text);
+}
+
+.theme-toggle-button[aria-pressed="true"] {
+    background: var(--accent-subtle);
+    color: var(--text);
+}
+
+.theme-toggle-button svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .content {
@@ -96,7 +147,36 @@ a {
 }
 
 a:hover {
+    color: var(--accent-hover);
     text-decoration-thickness: 1px;
+}
+
+.site-title:hover,
+.header-link:hover,
+.footer-link:hover {
+    color: var(--text);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+::selection {
+    background: var(--accent-subtle);
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: 700;
 }
 
 .emoji {
@@ -112,6 +192,11 @@ a:hover {
     .site-footer-inner {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .theme-toggle-button {
+        width: 40px;
+        height: 40px;
     }
 
     .header-link {

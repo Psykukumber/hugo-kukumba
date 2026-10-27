@@ -37,6 +37,8 @@ Ignore generated artifacts:
   Markdown image render hook.
 - `static/css/`:
   Split by responsibility: `fonts.css`, `base.css`, `posts.css`, `media.css`.
+- `static/js/site/theme-toggle.js`:
+  Auto/light/dark switcher buttons. The theme is resolved by the inline script in `layouts/partials/site/theme-init.html`.
 - `static/js/site/twemoji.js`:
   Lazy-loaded Twemoji support for text content.
 - `static/js/media/gallery.js`:

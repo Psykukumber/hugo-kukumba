@@ -1,4 +1,5 @@
 {{- $colors := .Site.Params.themeColors -}}
+{{- $light := .Site.Params.themeColorsLight -}}
 {{- $fonts := .Site.Params.themeFonts -}}
 {{- $layout := .Site.Params.themeLayout -}}
 {{- /* Fonts are bundled with the theme by default; googleFontsURL opts into an external stylesheet instead. */ -}}
@@ -13,17 +14,25 @@
 {{- end }}
 <style>
   :root {
+    color-scheme: dark;
     --bg: {{ $colors.bg | default "#000000" }};
     --surface: {{ $colors.surface | default "#0c0c0c" }};
     --text: {{ $colors.text | default "#e6e6e6" }};
     --muted: {{ $colors.muted | default "#a0a0a0" }};
-    --accent: {{ $colors.accent | default "#08ba08" }};
+    --accent: {{ $colors.accent | default "#08af08" }};
+    --accent-hover: {{ $colors.accentHover | default "#39c834" }};
+    --accent-subtle: {{ $colors.accentSubtle | default "#013f01" }};
     --border: {{ $colors.border | default "#242424" }};
+    --outline: {{ $colors.outline | default "#6b6b6b" }};
     --inline-code-bg: {{ $colors.inlineCodeBg | default "#1a1b26" }};
     --inline-code-text: {{ $colors.inlineCodeText | default "#7aa2f7" }};
     --inline-code-border: {{ $colors.inlineCodeBorder | default "#2f3549" }};
     --font-body: {{ ($fonts.body | default "\"Nunito\", sans-serif") | safeCSS }};
     --font-code: {{ ($fonts.code | default "\"Fira Code\", monospace") | safeCSS }};
+    --radius-sm: {{ $layout.radiusSm | default "6px" }};
+    --radius-md: {{ $layout.radiusMd | default "10px" }};
+    --radius-lg: {{ $layout.radiusLg | default "16px" }};
+    --radius-pill: {{ $layout.radiusPill | default "999px" }};
     --content-max-width: {{ $layout.contentMaxWidth | default "900px" }};
     --content-side-padding: {{ $layout.contentSidePadding | default "4vw" }};
     --site-header-gap: {{ $layout.siteHeaderGap | default "12px" }};
@@ -90,5 +99,20 @@
     --post-meta-gap-mobile: {{ $layout.postMetaGapMobile | default "4px" }};
     --post-meta-margin-top-mobile: {{ $layout.postMetaMarginTopMobile | default "0" }};
     --post-meta-margin-bottom-mobile: {{ $layout.postMetaMarginBottomMobile | default "14px" }};
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: {{ $light.bg | default "#ffffff" }};
+    --surface: {{ $light.surface | default "#f6f6f6" }};
+    --text: {{ $light.text | default "#111111" }};
+    --muted: {{ $light.muted | default "#595959" }};
+    --accent: {{ $light.accent | default "#027202" }};
+    --accent-hover: {{ $light.accentHover | default "#005800" }};
+    --accent-subtle: {{ $light.accentSubtle | default "#e2ffdf" }};
+    --border: {{ $light.border | default "#e0e0e0" }};
+    --outline: {{ $light.outline | default "#767676" }};
+    --inline-code-bg: {{ $light.inlineCodeBg | default "#eef1f8" }};
+    --inline-code-text: {{ $light.inlineCodeText | default "#2b4fa8" }};
+    --inline-code-border: {{ $light.inlineCodeBorder | default "#d3d9ea" }};
   }
 </style>

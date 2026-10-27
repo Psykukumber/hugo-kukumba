@@ -43,8 +43,11 @@ pagerSize = 10
     surface = "#0c0c0c"
     text = "#e6e6e6"
     muted = "#a0a0a0"
-    accent = "#08ba08"
+    accent = "#08af08"
+    accentHover = "#39c834"
+    accentSubtle = "#013f01"
     border = "#242424"
+    outline = "#6b6b6b"
     inlineCodeBg = "#1a1b26"
     inlineCodeText = "#7aa2f7"
     inlineCodeBorder = "#2f3549"
@@ -106,6 +109,7 @@ The theme is grouped by feature area:
 - `static/css/base.css`: global layout, shell, links
 - `static/css/posts.css`: post lists, metadata, pagination, previews
 - `static/css/media.css`: code, images, albums, lightbox-related layout
+- `static/js/site/theme-toggle.js`: theme switcher buttons (the theme itself is resolved by an inline script from `partials/site/theme-init.html`)
 - `static/js/site/twemoji.js`: lazy-loaded Twemoji support for text content
 - `static/js/media/gallery.js`: album carousel and PhotoSwipe integration
 - `static/js/posts/back-link.js`: single-post back-link behavior
@@ -381,14 +385,43 @@ Used by `plain` preview mode to control the maximum length of list excerpts.
   surface = "#0c0c0c"
   text = "#e6e6e6"
   muted = "#a0a0a0"
-  accent = "#08ba08"
+  accent = "#08af08"
+  accentHover = "#39c834"
+  accentSubtle = "#013f01"
   border = "#242424"
+  outline = "#6b6b6b"
   inlineCodeBg = "#1a1b26"
   inlineCodeText = "#7aa2f7"
   inlineCodeBorder = "#2f3549"
 ```
 
 These values map directly to the theme CSS variables, so you can change the palette without editing `base.css`.
+
+### Light Theme and Theme Switcher
+
+The header has a three-button switcher: auto (follows the system), light and dark. The visitor's choice is saved in the browser (`localStorage`). Without a saved choice the theme falls back to `themeDefault`.
+
+```toml
+[params]
+  themeDefault = "dark"   # "dark" (default), "light" or "auto"
+  themeToggle = true      # false hides the switcher
+
+[params.themeColorsLight]
+  bg = "#ffffff"
+  surface = "#f6f6f6"
+  text = "#111111"
+  muted = "#595959"
+  accent = "#027202"
+  accentHover = "#005800"
+  accentSubtle = "#e2ffdf"
+  border = "#e0e0e0"
+  outline = "#767676"
+  inlineCodeBg = "#eef1f8"
+  inlineCodeText = "#2b4fa8"
+  inlineCodeBorder = "#d3d9ea"
+```
+
+`themeColors` is the dark palette, `themeColorsLight` is the light one. The light accent is a darker green so links stay readable on white. Highlighted code blocks keep the `tokyonight-night` style in both themes.
 
 ### Theme Fonts
 
